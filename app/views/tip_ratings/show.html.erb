@@ -1,0 +1,101 @@
+<div>
+  <div>
+    <h1>
+      Tip rating #<%= @the_tip_rating.id %> details
+    </h1>
+
+    <div>
+      <div>
+        <a href="/tip_ratings">
+          Go back
+        </a>
+      </div>
+
+      <div>
+        <a href="/delete_tip_rating/<%= @the_tip_rating.id %>">
+          Delete tip rating
+        </a>
+      </div>
+    </div>
+
+    <dl>
+      <dt>
+        Tip
+      </dt>
+      <dd>
+        <%= @the_tip_rating.tip_id %>
+      </dd>
+
+      <dt>
+        User
+      </dt>
+      <dd>
+        <%= @the_tip_rating.user_id %>
+      </dd>
+
+      <dt>
+        Rating value
+      </dt>
+      <dd>
+        <%= @the_tip_rating.rating_value %>
+      </dd>
+
+      <dt>
+        Created at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@the_tip_rating.created_at) %> ago
+      </dd>
+
+      <dt>
+        Updated at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@the_tip_rating.updated_at) %> ago
+      </dd>
+    </dl>
+  </div>
+</div>
+
+<hr>
+
+
+<div>
+  <div>
+    <h2>
+      Edit tip rating
+    </h2>
+
+    <form action="/modify_tip_rating/<%= @the_tip_rating.id %>"  method="post" >
+      <div>
+        <label for="tip_id_box">
+          Tip
+        </label>
+
+        <input type="text" id="tip_id_box" name="query_tip_id" value="<%= @the_tip_rating.tip_id %>">
+      </div>
+
+      <div>
+        <label for="user_id_box">
+          User
+        </label>
+
+        <input type="text" id="user_id_box" name="query_user_id" value="<%= @the_tip_rating.user_id %>">
+      </div>
+
+      <div>
+        <label for="rating_value_box">
+          Rating value
+        </label>
+
+        <input type="text" id="rating_value_box" name="query_rating_value" value="<%= @the_tip_rating.rating_value %>">
+      </div>
+
+      <button>
+        Update tip rating
+      </button>
+    </form>
+  </div>
+</div>
+
+<hr>

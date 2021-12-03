@@ -1,0 +1,101 @@
+<div>
+  <div>
+    <h1>
+      Vote #<%= @the_vote.id %> details
+    </h1>
+
+    <div>
+      <div>
+        <a href="/votes">
+          Go back
+        </a>
+      </div>
+
+      <div>
+        <a href="/delete_vote/<%= @the_vote.id %>">
+          Delete vote
+        </a>
+      </div>
+    </div>
+
+    <dl>
+      <dt>
+        Vote type
+      </dt>
+      <dd>
+        <%= @the_vote.vote_type %>
+      </dd>
+
+      <dt>
+        Tip
+      </dt>
+      <dd>
+        <%= @the_vote.tip_id %>
+      </dd>
+
+      <dt>
+        User
+      </dt>
+      <dd>
+        <%= @the_vote.user_id %>
+      </dd>
+
+      <dt>
+        Created at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@the_vote.created_at) %> ago
+      </dd>
+
+      <dt>
+        Updated at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@the_vote.updated_at) %> ago
+      </dd>
+    </dl>
+  </div>
+</div>
+
+<hr>
+
+
+<div>
+  <div>
+    <h2>
+      Edit vote
+    </h2>
+
+    <form action="/modify_vote/<%= @the_vote.id %>"  method="post" >
+      <div>
+        <input type="checkbox" id="vote_type_box" name="query_vote_type" value="1" <%= "checked" if @the_vote.vote_type %>>
+
+        <label for="vote_type_box">
+            Vote type
+        </label>
+      </div>
+
+      <div>
+        <label for="tip_id_box">
+          Tip
+        </label>
+
+        <input type="text" id="tip_id_box" name="query_tip_id" value="<%= @the_vote.tip_id %>">
+      </div>
+
+      <div>
+        <label for="user_id_box">
+          User
+        </label>
+
+        <input type="text" id="user_id_box" name="query_user_id" value="<%= @the_vote.user_id %>">
+      </div>
+
+      <button>
+        Update vote
+      </button>
+    </form>
+  </div>
+</div>
+
+<hr>
