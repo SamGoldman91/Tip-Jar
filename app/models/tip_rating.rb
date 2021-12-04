@@ -10,4 +10,9 @@
 #  user_id      :integer
 #
 class TipRating < ApplicationRecord
+
+  belongs_to(:user, { :required => true, :class_name => "User", :foreign_key => "user_id" })
+
+  belongs_to(:tip, { :required => true, :class_name => "Tip", :foreign_key => "tip_id" })
+  
 end
