@@ -132,6 +132,24 @@
       </tr>
 
       <% @list_of_tips.each do |a_tip| %>
+        <div class="card" style="width: 18rem;">
+          <img src="<%= a_tip.tip_pic %>" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title"> <%= a_tip.business.business_name %> </h5>
+            <p class="card-text"> <%= a_tip.tip_text %> </p>
+          </div>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item"> <%= a_tip.tip_type %> </li>
+            <li class="list-group-item">Upvotes: <%= a_tip.upvote_count %></li>
+            <a href="#" class="btn btn-primary">Upvote</a> <%# Need to get this upvote form/button working %>
+          </ul>
+          <div class="card-body">
+            <a href="/tips/<%= a_tip.id %>" class="card-link">Show Details</a>
+          </div>
+        </div>
+      <% end %>
+
+      <% @list_of_tips.each do |a_tip| %>
       <tr>
         <td>
           <%= a_tip.id %>
@@ -142,7 +160,7 @@
         </td>
 
         <td>
-          <%= a_tip.tip_pic %>
+          <img src="<%= a_tip.tip_pic %>">
         </td>
 
         <td>
