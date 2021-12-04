@@ -1,4 +1,12 @@
 class VotesController < ApplicationController
+  
+  def vote_counter
+    the_tip_id = 1
+    
+    @total_upvotes = Vote.where({ :tip_id => the_tip_id, :vote_type => 1 }).count
+
+  end
+  
   def index
     matching_votes = Vote.all
 

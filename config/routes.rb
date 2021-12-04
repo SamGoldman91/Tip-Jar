@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-
+  get("/", { :controller => "tips", :action => "index" })
 
   # Routes for the Tip rating resource:
 

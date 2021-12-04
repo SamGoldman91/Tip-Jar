@@ -125,6 +125,10 @@
 
         <th>
         </th>
+
+        <th>
+          Upvote
+        </th>
       </tr>
 
       <% @list_of_tips.each do |a_tip| %>
@@ -172,6 +176,39 @@
           <a href="/tips/<%= a_tip.id %>">
             Show details
           </a>
+        </td>
+
+        <td>
+          <form action="/insert_vote" method="post">
+            <div> <%# Make this a drop down %>
+              <label for="vote_type">
+                Vote Type
+              </label>
+
+              <input type="text" id="vote_type" name="query_vote_type">
+            </div>
+
+            <div> <%# make this automatic %>
+              <label for="tip_id">
+                Tip ID
+              </label>
+
+              <input type="text" id="tip_id" name="query_tip_id">
+            </div>
+
+            <div> <%# make this automatic %>
+              <label for="user_id">
+                User ID
+              </label>
+
+              <input type="text" id="user_id" name="query_user_id">
+            </div>
+
+            <button>
+              Upvote
+            </button>
+
+          </form>
         </td>
       </tr>
       <% end %>
