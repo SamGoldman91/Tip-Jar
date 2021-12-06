@@ -7,6 +7,17 @@ class VotesController < ApplicationController
 
   end
   
+  #AND THIS
+  def show_activity
+    render({ :template => "activities/show.html.erb" })
+  end
+
+  #WORKING ON THIS
+  def user_votes
+    matching_votes = Vote.all
+    
+  end
+
   def index
     matching_votes = Vote.all
 

@@ -15,8 +15,4 @@ class ApplicationController < ActionController::Base
     end
   end
 
-def show_activity
-  render({ :template => "activities/show.html.erb" })
-end
-
 end

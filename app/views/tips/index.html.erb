@@ -81,186 +81,125 @@
 
 <hr>
 <div>
-  <div>
-    <table>
-      <tr>
-        <th>
-          ID
-        </th>
+  <div class="table-responsive">
+    <table class="table table-striped align-middle">
+      <thead>
+        <tr>
 
-        <th>
-          Tip text
-        </th>
+          <th scope="col">
+            Business name
+          </th>
+          
+          <th scope="col">
+            Category
+          </th>
 
-        <th>
-          Tip pic
-        </th>
+          <th scope="col">
+            Tip
+          </th>
 
-        <th>
-          User
-        </th>
+          <th scope="col">
+            Picture
+          </th>
 
-        <th>
-          Business
-        </th>
+          <th scope="col">
+            Posted by
+          </th>
 
-        <th>
-          Tip type
-        </th>
 
-        <th>
-          Upvote count
-        </th>
+          <th scope="col">
+            Upvote count
+          </th>
 
-        <th>
-          Downvote count
-        </th>
+          <th scope="col">
+            Downvote count
+          </th>
 
-        <th>
-          Created at
-        </th>
+          <th scope="col">
+            Created at
+          </th>
 
-        <th>
-          Updated at
-        </th>
+          <th scope="col">
+          </th>
 
-        <th>
-        </th>
+          <th scope="col">
+            Upvote
+          </th>
+        </tr>
+      </thead>
 
-        <th>
-          Upvote
-        </th>
-      </tr>
+      <tbody>
 
-      <% @list_of_tips.each do |a_tip| %>
-        <div class="card" style="width: 18rem;">
-          <img src="<%= a_tip.tip_pic %>" class="card-img-top" alt="...">
-          <div class="card-body">
-            <h5 class="card-title"> <%= a_tip.business.business_name %> </h5>
-            <p class="card-text"> <%= a_tip.tip_text %> </p>
-          </div>
-          <ul class="list-group list-group-flush">
-            <li class="list-group-item"> <%= a_tip.tip_type %> </li>
-            <li class="list-group-item">Upvotes: <%= a_tip.upvote_count %></li>
-            <li class="list-group-item">
-              <form action="/insert_vote" method="post">
-                <div> <%# Make this a drop down %>
-                  <label for="vote_type">
-                    Vote Type
-                  </label>
+        <% @list_of_tips.each do |a_tip| %>
+        <tr>
+          <td>
+            <%= a_tip.business.business_name %>
+          </td>
 
-                  <input type="text" id="vote_type" name="query_vote_type">
-                </div>
+          <td>
+            <%= a_tip.tip_type %>
+          </td>
 
-                <div> <%# make this automatic %>
-                  <label for="tip_id">
-                    Tip ID
-                  </label>
+          <td>
+            <%= a_tip.tip_text %>
+          </td>
 
-                  <input type="string" id="tip_id" name="query_tip_id" <%#value="a_tip.id"%> >
-                </div>
-                
-                <button>
-                  Upvote
-                </button>
+          <td>
+            <img src="<%= a_tip.tip_pic %>">
+          </td>
 
-              </form>
-            </li>
-            
-            <%# Testing out the condensed upvote button %>
-            <li class="list-group-item">
-              <form action="/insert_vote" method="post">
+          <td>
+            <%= a_tip.user.name %>
+          </td>
 
-              </form>
-            </li>
-          </ul>
-          <div class="card-body">
-            <a href="/tips/<%= a_tip.id %>" class="card-link">Show Details</a>
-          </div>
-        </div>
-      <% end %>
+          <td>
+            <%= a_tip.upvote_count %>
+          </td>
 
-      <% @list_of_tips.each do |a_tip| %>
-      <tr>
-        <td>
-          <%= a_tip.id %>
-        </td>
+          <td>
+            <%= a_tip.downvote_count %>
+          </td>
 
-        <td>
-          <%= a_tip.tip_text %>
-        </td>
+          <td>
+            <%= time_ago_in_words(a_tip.created_at) %> ago
+          </td>
 
-        <td>
-          <img src="<%= a_tip.tip_pic %>">
-        </td>
+          <td>
+            <a href="/tips/<%= a_tip.id %>">
+              Show details
+            </a>
+          </td>
 
-        <td>
-          <%= a_tip.user_id %>
-        </td>
+          <td>
+            <form action="/insert_vote" method="post">
 
-        <td>
-          <%= a_tip.business_id %>
-        </td>
+              <div> <%# Make this a drop down %>
+                <label for="vote_type">
+                  Vote Type
+                </label>
 
-        <td>
-          <%= a_tip.tip_type %>
-        </td>
+                <input type="checkbox" id="vote_type" name="query_vote_type">
+              </div>
 
-        <td>
-          <%= a_tip.upvote_count %>
-        </td>
+              <div> <%# make this automatic %>
+                <label for="tip_id">
+                  Tip ID
+                </label>
 
-        <td>
-          <%= a_tip.downvote_count %>
-        </td>
+                <input type="string" id="tip_id" name="query_tip_id" <%#value="a_tip.id"%> >
+              </div>
+              
+              <button>
+                Upvote
+              </button>
 
-        <td>
-          <%= time_ago_in_words(a_tip.created_at) %> ago
-        </td>
-        <td>
-          <%= time_ago_in_words(a_tip.updated_at) %> ago
-        </td>
+            </form>
+          </td>
+        </tr>
+        <% end %>
+      
+      <tbody>
 
-        <td>
-          <a href="/tips/<%= a_tip.id %>">
-            Show details
-          </a>
-        </td>
-
-        <td>
-          <form action="/insert_vote" method="post">
-            <div> <%# Make this a drop down %>
-              <label for="vote_type">
-                Vote Type
-              </label>
-
-              <input type="text" id="vote_type" name="query_vote_type">
-            </div>
-
-            <div> <%# make this automatic %>
-              <label for="tip_id">
-                Tip ID
-              </label>
-
-              <input type="hidden" id="tip_id" name="query_tip_id">
-            </div>
-
-            <div> <%# make this automatic %>
-              <label for="user_id">
-                User ID
-              </label>
-
-              <input type="text" id="user_id" name="query_user_id">
-            </div>
-
-            <button>
-              Upvote
-            </button>
-
-          </form>
-        </td>
-      </tr>
-      <% end %>
     </table>
   </div>
 </div>
