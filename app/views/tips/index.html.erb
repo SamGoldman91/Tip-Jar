@@ -11,10 +11,19 @@
 <div>
   <div>
     <h2>
-      Add a new tip
+      Create a new tip
     </h2>
 
     <form action="/insert_tip" method="post">
+      
+      <div>
+        <label for="tip_type_box">
+          Category
+        </label>
+
+        <input type="text" id="tip_type_box" name="query_tip_type">
+      </div>
+
       <div>
         <label for="tip_text_box">
           Tip text
@@ -45,15 +54,7 @@
         </label>
 
         <input type="text" id="business_id_box" name="query_business_id">
-      </div>
-
-      <div>
-        <label for="tip_type_box">
-          Tip type
-        </label>
-
-        <input type="text" id="tip_type_box" name="query_tip_type">
-      </div>
+      </div>    
 
       <div>
         <label for="upvote_count_box">
@@ -141,7 +142,38 @@
           <ul class="list-group list-group-flush">
             <li class="list-group-item"> <%= a_tip.tip_type %> </li>
             <li class="list-group-item">Upvotes: <%= a_tip.upvote_count %></li>
-            <a href="#" class="btn btn-primary">Upvote</a> <%# Need to get this upvote form/button working %>
+            <li class="list-group-item">
+              <form action="/insert_vote" method="post">
+                <div> <%# Make this a drop down %>
+                  <label for="vote_type">
+                    Vote Type
+                  </label>
+
+                  <input type="text" id="vote_type" name="query_vote_type">
+                </div>
+
+                <div> <%# make this automatic %>
+                  <label for="tip_id">
+                    Tip ID
+                  </label>
+
+                  <input type="text" id="tip_id" name="query_tip_id">
+                </div>
+
+                <div> <%# make this automatic %>
+                  <label for="user_id">
+                    User ID
+                  </label>
+
+                  <input type="text" id="user_id" name="query_user_id">
+                </div>
+                
+                <button>
+                  Upvote
+                </button>
+
+              </form>
+            </li>
           </ul>
           <div class="card-body">
             <a href="/tips/<%= a_tip.id %>" class="card-link">Show Details</a>
@@ -211,7 +243,7 @@
                 Tip ID
               </label>
 
-              <input type="text" id="tip_id" name="query_tip_id">
+              <input type="hidden" id="tip_id" name="query_tip_id">
             </div>
 
             <div> <%# make this automatic %>

@@ -29,8 +29,8 @@ class VotesController < ApplicationController
     the_vote = Vote.new
     the_vote.vote_type = params.fetch("query_vote_type", false)
     the_vote.tip_id = params.fetch("query_tip_id")
-    the_vote.user_id = params.fetch("query_user_id")
-
+    the_vote.user_id = session.fetch(:user_id)
+    
     if the_vote.valid?
       the_vote.save
       redirect_to("/votes", { :notice => "Vote created successfully." })
@@ -45,8 +45,8 @@ class VotesController < ApplicationController
 
     the_vote.vote_type = params.fetch("query_vote_type", false)
     the_vote.tip_id = params.fetch("query_tip_id")
-    the_vote.user_id = params.fetch("query_user_id")
-
+    the_vote.user_id = session.fetch(:user_id)
+    
     if the_vote.valid?
       the_vote.save
       redirect_to("/votes/#{the_vote.id}", { :notice => "Vote updated successfully."} )
