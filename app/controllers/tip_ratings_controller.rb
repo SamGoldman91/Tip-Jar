@@ -20,7 +20,7 @@ class TipRatingsController < ApplicationController
   def create
     the_tip_rating = TipRating.new
     the_tip_rating.tip_id = params.fetch("query_tip_id")
-    the_tip_rating.user_id = params.fetch("query_user_id")
+    the_tip_rating.user_id = session.fetch(:user_id)
     the_tip_rating.rating_value = params.fetch("query_rating_value")
 
     if the_tip_rating.valid?

@@ -20,7 +20,7 @@ class CommentsController < ApplicationController
   def create
     the_comment = Comment.new
     the_comment.tip_id = params.fetch("query_tip_id")
-    the_comment.user_id = params.fetch("query_user_id")
+    the_comment.user_id = session.fetch(:user_id)
     the_comment.comment_text = params.fetch("query_comment_text")
 
     if the_comment.valid?

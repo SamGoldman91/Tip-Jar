@@ -21,7 +21,7 @@ class TipsController < ApplicationController
     the_tip = Tip.new
     the_tip.tip_text = params.fetch("query_tip_text")
     the_tip.tip_pic = params.fetch("query_tip_pic")
-    the_tip.user_id = params.fetch("query_user_id")
+    the_tip.user_id = session.fetch(:user_id)
     the_tip.business_id = params.fetch("query_business_id")
     the_tip.tip_type = params.fetch("query_tip_type")
     the_tip.upvote_count = params.fetch("query_upvote_count")

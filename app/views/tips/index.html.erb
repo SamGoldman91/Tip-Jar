@@ -157,20 +157,19 @@
                     Tip ID
                   </label>
 
-                  <input type="text" id="tip_id" name="query_tip_id">
-                </div>
-
-                <div> <%# make this automatic %>
-                  <label for="user_id">
-                    User ID
-                  </label>
-
-                  <input type="text" id="user_id" name="query_user_id">
+                  <input type="string" id="tip_id" name="query_tip_id" <%#value="a_tip.id"%> >
                 </div>
                 
                 <button>
                   Upvote
                 </button>
+
+              </form>
+            </li>
+            
+            <%# Testing out the condensed upvote button %>
+            <li class="list-group-item">
+              <form action="/insert_vote" method="post">
 
               </form>
             </li>
