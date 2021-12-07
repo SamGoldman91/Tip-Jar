@@ -9,7 +9,7 @@ class VotesController < ApplicationController
 
   end
   
-  #AND THIS
+  ### MOVE THIS TO A USER ACTIVITY CONTROLLER ###
   def show_activity
 
     #Pulling tips related to a particular user
@@ -19,12 +19,6 @@ class VotesController < ApplicationController
     @votes_for_user = Vote.where({ :user_id => @current_user }).order({ :created_at => :desc })
 
     render({ :template => "activities/show.html.erb" })
-  end
-
-  #WORKING ON THIS
-  def user_votes
-    matching_votes = Vote.all
-    
   end
 
   def index
@@ -50,12 +44,18 @@ class VotesController < ApplicationController
     the_vote.vote_type = params.fetch("query_vote_type", false)
     the_vote.tip_id = params.fetch("query_tip_id")
     the_vote.user_id = session.fetch(:user_id)
+
+    # Updating the vote counts whenever a vote is made
+    the_tip = Tip.where({ :id => the_vote.tip_id }).at(0)
+    the_tip.upvote_count = Vote.where({ :tip_id => the_tip.id }).where({ :vote_type => true }).count+1
+    the_tip.downvote_count = Vote.where({ :tip_id => the_tip.id }).where({ :vote_type => false }).count+1
     
     if the_vote.valid?
       the_vote.save
-      redirect_to("/votes", { :notice => "Vote created successfully." })
+      the_tip.save
+      redirect_to("/tips/#{the_vote.tip_id}", { :notice => "Vote created successfully." })
     else
-      redirect_to("/votes", { :notice => "Vote failed to create successfully." })
+      redirect_to("/tips", { :notice => the_vote.errors.full_messages })
     end
   end
 

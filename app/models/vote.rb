@@ -14,5 +14,6 @@ class Vote < ApplicationRecord
   belongs_to(:user, { :required => true, :class_name => "User", :foreign_key => "user_id" })
 
   belongs_to(:tip, { :required => true, :class_name => "Tip", :foreign_key => "tip_id" })
-  
+
+  validates(:tip_id, uniqueness: {scope: :user_id, message: "Can only vote once" })
 end

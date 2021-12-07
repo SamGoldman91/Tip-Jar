@@ -26,8 +26,8 @@ class TipsController < ApplicationController
     the_tip.user_id = session.fetch(:user_id)
     the_tip.business_id = params.fetch("query_business_id")
     the_tip.tip_type = params.fetch("query_tip_type")
-    the_tip.upvote_count = params.fetch("query_upvote_count")
-    the_tip.downvote_count = params.fetch("query_downvote_count")
+    #the_tip.upvote_count = params.fetch("query_upvote_count")
+    #the_tip.downvote_count = params.fetch("query_downvote_count")
 
     if the_tip.valid?
       the_tip.save

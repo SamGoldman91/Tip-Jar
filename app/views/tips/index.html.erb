@@ -125,6 +125,10 @@
           <th scope="col">
             Upvote
           </th>
+
+          <th scope="col">
+            Downvote
+          </th>
         </tr>
       </thead>
 
@@ -169,37 +173,32 @@
               Show details
             </a>
           </td>
+          
+          
+          <td>
+            <form action="/insert_vote" method="post">
+                
+              <input type="hidden" id="vote_type" name="query_vote_type" value=<%= true %>>
+              
+              <input type="hidden" id="tip_id" name="query_tip_id" value="<%= a_tip.id %>">
+              
+              <button>Upvote</button>
+              
+            </form>
+          </td>
 
           <td>
             <form action="/insert_vote" method="post">
 
-              <div> <%# Make this a drop down %>
-                <label for="vote_type">
-                  Vote Type
-                </label>
-
-                <input type="checkbox" id="vote_type" name="query_vote_type">
-              </div>
-
-              <div> <%# make this automatic %>
-                <label for="tip_id">
-                  Tip ID
-                </label>
-
-                <input type="string" id="tip_id" name="query_tip_id" <%#value="a_tip.id"%> >
-              </div>
+              <input type="hidden" id="vote_type" name="query_vote_type" value=<%= false %>>
               
-              <div class="d-grid gap-2 d-md-block">
-                <button <%#type="button" class="btn btn-primary btn-sm"%>>
-                  Upvote
-                </button>
-                <button <%#type="button" class="btn btn-primary btn-sm"%> disabled>
-                  Downvote
-                </button>
-              </div>
-
+              <input type="hidden" id="tip_id" name="query_tip_id" value="<%= a_tip.id %>">
+              
+              <button>Downvote</button>
+              
             </form>
           </td>
+
         </tr>
         <% end %>
       
