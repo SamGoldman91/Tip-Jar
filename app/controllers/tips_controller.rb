@@ -4,7 +4,12 @@ class TipsController < ApplicationController
 
     @list_of_tips = matching_tips.order({ :created_at => :desc })
 
-    #@list_of_categories = matching_tips.last.tip_type
+    # List of unique categories that have been created
+    @list_of_categories = Tip.select(:tip_type).map(&:tip_type).uniq
+    
+    # List of businesses
+    matching_businesses = Business.all
+    @list_of_businesses = matching_businesses.order({ :business_name => :asc })
 
     render({ :template => "tips/index.html.erb" })
   end
@@ -26,9 +31,7 @@ class TipsController < ApplicationController
     the_tip.user_id = session.fetch(:user_id)
     the_tip.business_id = params.fetch("query_business_id")
     the_tip.tip_type = params.fetch("query_tip_type")
-    #the_tip.upvote_count = params.fetch("query_upvote_count")
-    #the_tip.downvote_count = params.fetch("query_downvote_count")
-
+    
     if the_tip.valid?
       the_tip.save
       redirect_to("/tips", { :notice => "Tip created successfully." })
