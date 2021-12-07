@@ -1,8 +1,10 @@
-class TipsController < ApplicationController
+class TipsController < ApplicationController  
   def index
     matching_tips = Tip.all
 
     @list_of_tips = matching_tips.order({ :created_at => :desc })
+
+    #@list_of_categories = matching_tips.last.tip_type
 
     render({ :template => "tips/index.html.erb" })
   end

@@ -9,13 +9,24 @@
 <hr>
 
 <div>
-  <div>
+  <div class="container">
     <h2>
       Create a new tip
     </h2>
 
     <form action="/insert_tip" method="post">
       
+      <%# BOOTSTRAP DROPDOWN
+      <div>
+        <select class="form-select" aria-label="Default select example">
+          <option selected>Open this select menu</option>
+          <option value="1">One</option>
+          <option value="2">Two</option>
+          <option value="3">Three</option>
+        </select>
+      </div>
+      %>
+
       <div>
         <label for="tip_type_box">
           Category
@@ -72,7 +83,7 @@
         <input type="text" id="downvote_count_box" name="query_downvote_count">
       </div>
 
-      <button>
+      <button type="button" class="btn btn-primary">
         Create tip
       </button>
     </form>
@@ -189,9 +200,14 @@
                 <input type="string" id="tip_id" name="query_tip_id" <%#value="a_tip.id"%> >
               </div>
               
-              <button>
-                Upvote
-              </button>
+              <div class="d-grid gap-2 d-md-block">
+                <button type="button" class="btn btn-primary btn-sm">
+                  Upvote
+                </button>
+                <button type="button" class="btn btn-primary btn-sm" disabled>
+                  Downvote
+                </button>
+              </div>
 
             </form>
           </td>

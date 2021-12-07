@@ -1,9 +1,11 @@
 class VotesController < ApplicationController
   
   def vote_counter
-    the_tip_id = 1
+    upvotes = Vote.where({ :vote_type => 1 }).count
+
+    downvotes = Vote.where({ :vote_type => 1 }).count
     
-    @total_upvotes = Vote.where({ :tip_id => the_tip_id, :vote_type => 1 }).count
+    @net_votes = upvotes - downvotes
 
   end
   

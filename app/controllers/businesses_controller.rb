@@ -14,6 +14,9 @@ class BusinessesController < ApplicationController
 
     @the_business = matching_businesses.at(0)
 
+    #Pulling tips related to a particular business
+    @tips_for_business = Tip.where({ :business_id => @the_business }).order({ :created_at => :desc })
+
     render({ :template => "businesses/show.html.erb" })
   end
 
