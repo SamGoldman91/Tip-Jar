@@ -2,7 +2,7 @@ Rails.application.routes.draw do
 
   get("/", { :controller => "tips", :action => "index" })
 
-  get("/my_activity", { :controller => "votes", :action => "show_activity"})
+  get("/my_activity", { :controller => "user_activities", :action => "show_activity"})
 
   # Routes for the Tip rating resource:
 

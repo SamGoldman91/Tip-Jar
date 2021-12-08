@@ -1,25 +1,4 @@
 class VotesController < ApplicationController
-  
-  def vote_counter
-    upvotes = Vote.where({ :vote_type => 1 }).count
-
-    downvotes = Vote.where({ :vote_type => 1 }).count
-    
-    @net_votes = upvotes - downvotes
-
-  end
-  
-  ### MOVE THIS TO A USER ACTIVITY CONTROLLER ###
-  def show_activity
-
-    #Pulling tips related to a particular user
-    @tips_for_user = Tip.where({ :user_id => @current_user }).order({ :created_at => :desc })
-
-    #Pulling votes related to a particular user
-    @votes_for_user = Vote.where({ :user_id => @current_user }).order({ :created_at => :desc })
-
-    render({ :template => "activities/show.html.erb" })
-  end
 
   def index
     matching_votes = Vote.all

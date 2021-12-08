@@ -1,0 +1,159 @@
+<h1 style="text-align:center">My Activity</h1>
+
+<hr>
+
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <h2>My Tips</h2>
+        <div>
+          <div class="table-responsive">
+            <table class="table table-striped align-middle">
+              <thead>
+                <tr>
+
+                  <th scope="col">
+                    Business name
+                  </th>
+                  
+                  <th scope="col">
+                    Category
+                  </th>
+
+                  <th scope="col">
+                    Tip
+                  </th>
+
+                  <th scope="col">
+                    Picture
+                  </th>
+
+                  <th scope="col">
+                    Posted by
+                  </th>
+
+
+                  <th scope="col">
+                    Upvote count
+                  </th>
+
+                  <th scope="col">
+                    Downvote count
+                  </th>
+
+                  <th scope="col">
+                    Created at
+                  </th>
+
+                  <th scope="col">
+                  </th>
+
+                </tr>
+              </thead>
+
+              <tbody>
+
+                <% @tips_for_user.each do |a_tip| %>
+                <tr>
+                  <td>
+                    <%= a_tip.business.business_name %>
+                  </td>
+
+                  <td>
+                    <%= a_tip.tip_type %>
+                  </td>
+
+                  <td>
+                    <%= a_tip.tip_text %>
+                  </td>
+
+                  <td>
+                    <img src="<%= a_tip.tip_pic %>">
+                  </td>
+
+                  <td>
+                    <%= a_tip.user.name %>
+                  </td>
+
+                  <td>
+                    <%= a_tip.upvote_count %>
+                  </td>
+
+                  <td>
+                    <%= a_tip.downvote_count %>
+                  </td>
+
+                  <td>
+                    <%= time_ago_in_words(a_tip.created_at) %> ago
+                  </td>
+
+                  <td>
+                    <a href="/tips/<%= a_tip.id %>">
+                      Show details
+                    </a>
+                  </td>
+
+                </tr>
+                <% end %>
+              
+              <tbody>
+
+            </table>
+          </div>
+        </div>
+      
+    </div>
+    <div class="col">
+      <h2>Recent Upvotes</h2>
+        <div>
+          <div class="table-responsive">
+            <table class="table table-striped align-middle">
+              <thead>
+                <tr>
+                  <th scope="col">
+                    Vote type
+                  </th>
+
+                  <th scope="col">
+                    Tip
+                  </th>
+
+                  <th scope="col">
+                    User
+                  </th>
+
+                  <th scope="col">
+                    Created at
+                  </th>
+
+                </tr>
+
+                <% @votes_for_user.each do |a_vote| %>
+                <tr>
+                  <td>
+                    <% if a_vote.vote_type == true %>
+                      upvote
+                    <% else %>
+                      downvote
+                    <% end %>
+                  </td>
+
+                  <td>
+                    <%= a_vote.tip_id %>
+                  </td>
+
+                  <td>
+                    <%= a_vote.user_id %>
+                  </td>
+
+                  <td>
+                    <%= time_ago_in_words(a_vote.created_at) %> ago
+                  </td>
+
+                </tr>
+            <% end %>
+          </table>
+        </div>      
+    </div>
+  </div>
+</div>
