@@ -32,17 +32,8 @@
 
         <%# BOOTSTRAP %>
         <div class="form-group">
-          <label for="exampleFormControlTextarea1">Example textarea</label>
-          <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-        </div>
-
-
-        <div>
-          <label for="tip_text_box">
-            Tip text
-          </label>
-
-          <textarea id="tip_text_box" name="query_tip_text"></textarea>
+          <label for="tip_text_box">Tip text</label>
+          <textarea class="form-control" id="tip_text_box" rows="3" name="query_tip_text"></textarea>
         </div>
 
         <div>
@@ -53,19 +44,23 @@
           <input type="text" id="tip_pic_box" name="query_tip_pic">
         </div>
 
-        <div>
-          <label for="business_id_box">
-            Business
-          </label>
+        <div class="container">
+              <label for="business_id_box">
+                Business
+              </label>
 
-          <select id="business_id_box" name="query_business_id">
-            <% @list_of_businesses.each do |a_business| %>
-              <option value="<%= a_business.id %>">
-                <%= a_business.business_name %>
-              </option>
-            <% end %>
-          </select>
-        </div>    
+              <select id="business_id_box" name="query_business_id">
+                <% @list_of_businesses.each do |a_business| %>
+                  <option value="<%= a_business.id %>">
+                    <%= a_business.business_name %>
+                  </option>
+                <% end %>
+              </select>
+            
+              <a href="/businesses">Add a new business</a>
+        </div>
+
+        
 
         <button>
           Create tip
