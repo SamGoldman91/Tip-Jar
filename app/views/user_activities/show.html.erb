@@ -115,6 +115,14 @@
                   </th>
 
                   <th scope="col">
+                    Business name
+                  </th>
+
+                  <th scope="col">
+                    Tip title
+                  </th>
+
+                  <th scope="col">
                     Tip
                   </th>
 
@@ -136,6 +144,15 @@
                     <% else %>
                       downvote
                     <% end %>
+                  </td>
+
+                  <%# Change the next two fields to pull in biz name and tip title %>
+                  <td>
+                    <%= a_vote.tip.business.business_name %>
+                  </td>
+
+                  <td>
+                    <%= a_vote.tip.title %>
                   </td>
 
                   <td>

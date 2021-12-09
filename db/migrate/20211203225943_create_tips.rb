@@ -7,7 +7,7 @@ class CreateTips < ActiveRecord::Migration[6.0]
       t.integer :business_id
       t.string :tip_type
       t.integer :upvote_count
-      t.string :downvote_count
+      t.integer :downvote_count
 
       t.timestamps
     end

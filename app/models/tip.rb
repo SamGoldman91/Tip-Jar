@@ -3,7 +3,7 @@
 # Table name: tips
 #
 #  id             :integer          not null, primary key
-#  downvote_count :string
+#  downvote_count :integer
 #  tip_pic        :string
 #  tip_text       :string
 #  tip_type       :string

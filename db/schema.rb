@@ -43,7 +43,7 @@ ActiveRecord::Schema.define(version: 2021_12_09_203919) do
     t.integer "business_id"
     t.string "tip_type"
     t.integer "upvote_count"
-    t.string "downvote_count"
+    t.integer "downvote_count"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "title"
