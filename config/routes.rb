@@ -45,7 +45,8 @@ Rails.application.routes.draw do
   # Routes for the Vote resource:
 
   # CREATE
-  post("/insert_vote", { :controller => "votes", :action => "create" })
+  post("/insert_upvote", { :controller => "votes", :action => "create_upvote" })
+  post("/insert_downvote", { :controller => "votes", :action => "create_downvote" })
           
   # READ
   get("/votes", { :controller => "votes", :action => "index" })

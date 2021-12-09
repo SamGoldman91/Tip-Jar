@@ -18,7 +18,7 @@ class VotesController < ApplicationController
     render({ :template => "votes/show.html.erb" })
   end
 
-  def create
+  def create_upvote
     the_vote = Vote.new
     the_vote.vote_type = params.fetch("query_vote_type", false)
     the_vote.tip_id = params.fetch("query_tip_id")
@@ -26,13 +26,33 @@ class VotesController < ApplicationController
 
     # Updating the vote counts whenever a vote is made
     the_tip = Tip.where({ :id => the_vote.tip_id }).at(0)
-    the_tip.upvote_count = Vote.where({ :tip_id => the_tip.id }).where({ :vote_type => true }).count+1 #Need to look at this +1 thing
-    the_tip.downvote_count = Vote.where({ :tip_id => the_tip.id }).where({ :vote_type => false }).count+1
+    the_tip.upvote_count = Vote.where({ :tip_id => the_tip.id }).where({ :vote_type => true }).count+1
+    
     
     if the_vote.valid?
       the_vote.save
       the_tip.save
-      redirect_to("/tips/#{the_vote.tip_id}", { :notice => "Vote created successfully." })
+      redirect_to("/tips", { :notice => "Upvote for #{the_tip.title} created successfully." })
+    else
+      redirect_to("/tips", { :notice => the_vote.errors.full_messages })
+    end
+  end
+
+  def create_downvote
+    the_vote = Vote.new
+    the_vote.vote_type = params.fetch("query_vote_type", false)
+    the_vote.tip_id = params.fetch("query_tip_id")
+    the_vote.user_id = session.fetch(:user_id)
+
+    # Updating the vote counts whenever a vote is made
+    the_tip = Tip.where({ :id => the_vote.tip_id }).at(0)
+    the_tip.downvote_count = Vote.where({ :tip_id => the_tip.id }).where({ :vote_type => false }).count+1
+    
+    
+    if the_vote.valid?
+      the_vote.save
+      the_tip.save
+      redirect_to("/tips", { :notice => "Downvote for #{the_tip.title} created successfully." })
     else
       redirect_to("/tips", { :notice => the_vote.errors.full_messages })
     end
