@@ -20,6 +20,13 @@
 
     <dl>
       <dt>
+        Tip title
+      </dt>
+      <dd>
+        <%= @the_tip.title %>
+      </dd>
+
+      <dt>
         Tip text
       </dt>
       <dd>
@@ -95,6 +102,14 @@
     </h2>
 
     <form action="/modify_tip/<%= @the_tip.id %>"  method="post" >
+      <div>
+        <label for="title_box">
+          Tip title
+        </label>
+
+        <input type="text" id="title_box" name="query_title" value="<%= @the_tip.title %>">
+      </div>
+      
       <div>
         <label for="tip_text_box">
           Tip text

@@ -23,6 +23,7 @@ class BusinessesController < ApplicationController
   def create
     the_business = Business.new
     the_business.business_name = params.fetch("query_business_name")
+    the_business.business_description = params.fetch("query_business_description")
     the_business.address = params.fetch("query_address")
 
     if the_business.valid?
@@ -38,6 +39,7 @@ class BusinessesController < ApplicationController
     the_business = Business.where({ :id => the_id }).at(0)
 
     the_business.business_name = params.fetch("query_business_name")
+    the_business.business_description = params.fetch("query_business_description")
     the_business.address = params.fetch("query_address")
 
     if the_business.valid?

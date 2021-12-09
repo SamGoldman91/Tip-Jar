@@ -24,6 +24,14 @@
       </div>
 
       <div>
+        <label for="business_description_box">
+          Business description
+        </label>
+
+        <input type="text" id="business_description_box" name="query_business_description">
+      </div>
+
+      <div>
         <label for="address_box">
           Address
         </label>
@@ -49,6 +57,10 @@
           </th>
 
           <th scope="col">
+            Business description
+          </th>
+
+          <th scope="col">
             Address
           </th>
 
@@ -70,6 +82,10 @@
         <tr>
           <td>
             <%= a_business.business_name %>
+          </td>
+
+          <td>
+            <%= a_business.business_description %>
           </td>
 
           <td>

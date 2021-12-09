@@ -26,6 +26,7 @@ class TipsController < ApplicationController
 
   def create
     the_tip = Tip.new
+    the_tip.title = params.fetch("query_title")
     the_tip.tip_text = params.fetch("query_tip_text")
     the_tip.tip_pic = params.fetch("query_tip_pic")
     the_tip.user_id = session.fetch(:user_id)
@@ -44,6 +45,7 @@ class TipsController < ApplicationController
     the_id = params.fetch("path_id")
     the_tip = Tip.where({ :id => the_id }).at(0)
 
+    the_tip.title = params.fetch("query_title")
     the_tip.tip_text = params.fetch("query_tip_text")
     the_tip.tip_pic = params.fetch("query_tip_pic")
     the_tip.user_id = params.fetch("query_user_id")

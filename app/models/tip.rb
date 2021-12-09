@@ -7,6 +7,7 @@
 #  tip_pic        :string
 #  tip_text       :string
 #  tip_type       :string
+#  title          :string
 #  upvote_count   :integer
 #  created_at     :datetime         not null
 #  updated_at     :datetime         not null

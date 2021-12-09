@@ -23,6 +23,14 @@
         </div>
 
         <div>
+          <label for="tip_title_box">
+            Tip title
+          </label>
+
+          <input type="text" id="tip_title_box" name="query_title">
+        </div>
+
+        <div>
           <label for="tip_text_box">
             Tip text
           </label>
@@ -90,6 +98,10 @@
           </th>
 
           <th scope="col">
+            Tip Title
+          </th>
+
+          <th scope="col">
             Tip
           </th>
 
@@ -137,6 +149,10 @@
 
           <td>
             <%= a_tip.tip_type %>
+          </td>
+
+          <td>
+            <%= a_tip.title %>
           </td>
 
           <td>

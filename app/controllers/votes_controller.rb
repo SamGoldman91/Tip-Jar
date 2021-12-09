@@ -26,7 +26,7 @@ class VotesController < ApplicationController
 
     # Updating the vote counts whenever a vote is made
     the_tip = Tip.where({ :id => the_vote.tip_id }).at(0)
-    the_tip.upvote_count = Vote.where({ :tip_id => the_tip.id }).where({ :vote_type => true }).count+1
+    the_tip.upvote_count = Vote.where({ :tip_id => the_tip.id }).where({ :vote_type => true }).count+1 #Need to look at this +1 thing
     the_tip.downvote_count = Vote.where({ :tip_id => the_tip.id }).where({ :vote_type => false }).count+1
     
     if the_vote.valid?

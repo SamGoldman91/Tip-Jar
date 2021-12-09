@@ -27,6 +27,13 @@
       </dd>
 
       <dt>
+        Business description
+      </dt>
+      <dd>
+        <%= @the_business.business_description %>
+      </dd>
+
+      <dt>
         Address
       </dt>
       <dd>
@@ -66,6 +73,14 @@
         </label>
 
         <input type="text" id="business_name_box" name="query_business_name" value="<%= @the_business.business_name %>">
+      </div>
+
+      <div>
+        <label for="business_description_box">
+          Business description
+        </label>
+
+        <input type="text" id="business_description_box" name="query_business_description" value="<%= @the_business.business_description %>">
       </div>
 
       <div>
