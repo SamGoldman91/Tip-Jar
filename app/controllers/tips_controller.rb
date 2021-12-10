@@ -27,7 +27,7 @@ class TipsController < ApplicationController
     #List of all businesses to select from when editing a tip
     matching_businesses = Business.all
 
-    @list_of_businesses = matching_businesses.uniq.pluck(:business_name)  #select(:business_name).map(&:business_name).uniq #order({ :created_at => :asc }).uniq
+    @list_of_businesses = matching_businesses.order({ :created_at => :asc })
 
     render({ :template => "tips/show.html.erb" })
   end

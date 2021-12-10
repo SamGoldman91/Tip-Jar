@@ -60,7 +60,7 @@
       Edit <%= @the_business.business_name %> details
     </h2>
 
-    <form action="/insert_business" method="post">
+    <form action="/modify_business/<%= @the_business.id %>" method="post">
       <div>
         <label for="business_name_box">
           Business name
