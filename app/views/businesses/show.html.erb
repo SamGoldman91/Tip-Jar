@@ -66,12 +66,12 @@
           Business name
         </label>
 
-        <input class="form-control" type="text" id="business_name_box" name="query_business_name">
+        <input class="form-control" type="text" id="business_name_box" name="query_business_name" value="<%= @the_business.business_name %>">
       </div>
 
       <div class="form-group">
           <label for="business_description_box">Business description</label>
-          <textarea class="form-control" id="business_description_box" rows="3" name="query_business_description"></textarea>
+          <input class="form-control" id="business_description_box" rows="3" name="query_business_description" value="<%= @the_business.business_description %>">
       </div>
 
       <div>
@@ -79,7 +79,7 @@
           Address
         </label>
 
-        <input class="form-control" type="text" id="address_box" name="query_address">
+        <input class="form-control" type="text" id="address_box" name="query_address" value="<%= @the_business.address %>">
       </div>
 
       <button class="btn btn-primary" type="submit">

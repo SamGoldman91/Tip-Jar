@@ -1,4 +1,4 @@
-<div>
+<div class="container">
   <div>
     <h1>
       Tip details
@@ -14,6 +14,20 @@
 
     <dl>
       <dt>
+        Business
+      </dt>
+      <dd>
+        <%= @the_tip.business.business_name %>
+      </dd>
+
+      <dt>
+        Category
+      </dt>
+      <dd>
+        <%= @the_tip.tip_type %>
+      </dd>
+
+      <dt>
         Tip title
       </dt>
       <dd>
@@ -21,7 +35,7 @@
       </dd>
 
       <dt>
-        Tip text
+        Tip
       </dt>
       <dd>
         <%= @the_tip.tip_text %>
@@ -38,21 +52,7 @@
         User
       </dt>
       <dd>
-        <%= @the_tip.user_id %>
-      </dd>
-
-      <dt>
-        Business
-      </dt>
-      <dd>
-        <%= @the_tip.business_id %>
-      </dd>
-
-      <dt>
-        Tip type
-      </dt>
-      <dd>
-        <%= @the_tip.tip_type %>
+        <%= @the_tip.user.name %>
       </dd>
 
       <dt>
@@ -88,80 +88,83 @@
 
 <hr>
 
-<% if @current_user.id == @the_tip.user_id %>
-  <div>
+<div class="container">
+  <% if @current_user.id == @the_tip.user_id %>
     <div>
-      <h2>
-        Edit tip
-      </h2>
-
-      <form action="/modify_tip/<%= @the_tip.id %>"  method="post" >
-        <div>
-          <label for="title_box">
-            Tip title
-          </label>
-
-          <input type="text" id="title_box" name="query_title" value="<%= @the_tip.title %>">
-        </div>
-        
-        <div>
-          <label for="tip_text_box">
-            Tip text
-          </label>
-
-          <input type="text" id="tip_text_box" name="query_tip_text" value="<%= @the_tip.tip_text %>">
-        </div>
-
-        <div>
-          <label for="tip_pic_box">
-            Tip pic
-          </label>
-
-          <input type="text" id="tip_pic_box" name="query_tip_pic" value="<%= @the_tip.tip_pic %>">
-        </div>
-
-        <div>
-          <label for="business_id_box">
-            Business
-          </label>
-
-          <select id="business_id_box" name="query_business_id">
-            <% @list_of_businesses.each do |a_business| %>
-              <option value="<%= a_business.id %>">
-                <%= a_business.business_name %>
-              </option>
-            <% end %>
-          </select>
-        </div>
-
-        <div>
-          <label for="tip_type_box">
-            Category
-          </label>
-
-          <select id="tip_type_box" name="query_tip_type">
-            <% @list_of_categories.each do |category| %>
-              <option>
-                <%= category %>
-              </option>
-            <% end %>
-          </select>
-        </div>
-
-        <button class="btn btn-primary" type="submit">
-          Update tip
-        </button>
-      </form>
-
       <div>
-        <a class="btn btn-danger" role="button" href="/delete_tip/<%= @the_tip.id %>">
-          Delete tip
-        </a>
+        <h2>
+          Edit tip
+        </h2>
+
+        <form action="/modify_tip/<%= @the_tip.id %>"  method="post" >
+          <div class="form-group">
+            <div>
+              <label for="business_id_box">
+                Business
+              </label>
+
+              <select class="form-control" id="business_id_box" name="query_business_id">
+                <% @list_of_businesses.each do |a_business| %>
+                  <option value="<%= a_business.id %>">
+                    <%= a_business.business_name %>
+                  </option>
+                <% end %>
+              </select>
+            </div>
+
+            <div>
+              <label for="tip_type_box">
+                Category
+              </label>
+
+              <select class="form-control" id="tip_type_box" name="query_tip_type">
+                <% @list_of_categories.each do |category| %>
+                  <option>
+                    <%= category %>
+                  </option>
+                <% end %>
+              </select>
+            </div>
+
+            <div>
+              <label for="title_box">
+                Tip title
+              </label>
+
+              <input class="form-control" type="text" id="title_box" name="query_title" value="<%= @the_tip.title %>">
+            </div>
+            
+            <div>
+              <label for="tip_text_box">
+                Tip text
+              </label>
+
+              <input class="form-control" id="tip_text_box" name="query_tip_text" value="<%= @the_tip.tip_text %>">
+            </div>
+
+            <div>
+              <label for="tip_pic_box">
+                Tip pic
+              </label>
+
+              <input class="form-control" type="text" id="tip_pic_box" name="query_tip_pic" value="<%= @the_tip.tip_pic %>">
+            </div>
+
+            <button class="btn btn-primary" type="submit">
+              Update tip
+            </button>
+          </div>
+        </form>
+
+        <div>
+          <a class="btn btn-danger" role="button" href="/delete_tip/<%= @the_tip.id %>">
+            Delete tip
+          </a>
+        </div>
+
       </div>
-
     </div>
-  </div>
 
-<% end %>
-
+  <% end %>
+</div>
 <hr>
