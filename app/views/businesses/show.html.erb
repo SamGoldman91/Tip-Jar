@@ -1,4 +1,4 @@
-<div>
+<div class="container">
   <div>
     <h1>
       <%= @the_business.business_name %> details
@@ -7,13 +7,7 @@
     <div>
       <div>
         <a href="/businesses">
-          Go back
-        </a>
-      </div>
-
-      <div>
-        <a href="/delete_business/<%= @the_business.id %>">
-          Delete business
+          Go back to business directory
         </a>
       </div>
     </div>
@@ -60,27 +54,24 @@
 <hr>
 
 
-<div>
+<div class="container">
   <div>
     <h2>
-      Edit business
+      Edit <%= @the_business.business_name %> details
     </h2>
 
-    <form action="/modify_business/<%= @the_business.id %>"  method="post" >
+    <form action="/insert_business" method="post">
       <div>
         <label for="business_name_box">
           Business name
         </label>
 
-        <input type="text" id="business_name_box" name="query_business_name" value="<%= @the_business.business_name %>">
+        <input class="form-control" type="text" id="business_name_box" name="query_business_name">
       </div>
 
-      <div>
-        <label for="business_description_box">
-          Business description
-        </label>
-
-        <input type="text" id="business_description_box" name="query_business_description" value="<%= @the_business.business_description %>">
+      <div class="form-group">
+          <label for="business_description_box">Business description</label>
+          <textarea class="form-control" id="business_description_box" rows="3" name="query_business_description"></textarea>
       </div>
 
       <div>
@@ -88,18 +79,26 @@
           Address
         </label>
 
-        <input type="text" id="address_box" name="query_address" value="<%= @the_business.address %>">
+        <input class="form-control" type="text" id="address_box" name="query_address">
       </div>
 
-      <button>
+      <button class="btn btn-primary" type="submit">
         Update business
       </button>
     </form>
   </div>
+
+  <div>
+    <a class="btn btn-danger" role="button" href="/delete_business/<%= @the_business.id %>">
+      Delete business
+    </a>
+  </div>
+
 </div>
 
 <hr>
-<div>
+
+<div class="container">
   <h2>
     <%= @the_business.business_name %> tips
   </h2>
@@ -114,6 +113,10 @@
           
           <th scope="col">
             Category
+          </th>
+
+          <th scope="col">
+            Tip Title
           </th>
 
           <th scope="col">
@@ -147,6 +150,10 @@
           <th scope="col">
             Upvote
           </th>
+
+          <th scope="col">
+            Downvote
+          </th>
         </tr>
       </thead>
 
@@ -160,6 +167,10 @@
 
           <td>
             <%= a_tip.tip_type %>
+          </td>
+
+          <td>
+            <%= a_tip.title %>
           </td>
 
           <td>
@@ -191,37 +202,35 @@
               Show details
             </a>
           </td>
-
+          
           <td>
-            <form action="/insert_vote" method="post">
-
-              <div> <%# Make this a drop down %>
-                <label for="vote_type">
-                  Vote Type
-                </label>
-
-                <input type="checkbox" id="vote_type" name="query_vote_type">
-              </div>
-
-              <div> <%# make this automatic %>
-                <label for="tip_id">
-                  Tip ID
-                </label>
-
-                <input type="string" id="tip_id" name="query_tip_id" <%#value="a_tip.id"%> >
-              </div>
+            <form action="/insert_upvote" method="post">
+                
+              <input type="hidden" id="vote_type" name="query_vote_type" value=<%= true %>>
               
-              <div class="d-grid gap-2 d-md-block">
-                <button <%#type="button" class="btn btn-primary btn-sm"%>>
-                  Upvote
-                </button>
-                <button <%#type="button" class="btn btn-primary btn-sm"%> disabled>
-                  Downvote
-                </button>
-              </div>
-
+              <input type="hidden" id="tip_id" name="query_tip_id" value="<%= a_tip.id %>">
+              
+              <button class="btn btn-primary" type="submit">
+                Upvote
+              </button>
+              
             </form>
           </td>
+
+          <td>
+            <form action="/insert_downvote" method="post">
+
+              <input type="hidden" id="vote_type" name="query_vote_type" value=<%= false %>>
+              
+              <input type="hidden" id="tip_id" name="query_tip_id" value="<%= a_tip.id %>">
+              
+              <button class="btn btn-primary" type="submit">
+                Downvote
+              </button>
+              
+            </form>
+          </td>
+
         </tr>
         <% end %>
       

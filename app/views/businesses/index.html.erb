@@ -1,14 +1,14 @@
-<div>
+<div class="container">
   <div>
     <h1>
-      List of all businesses
+      Business directory
     </h1>
   </div>
 </div>
 
 <hr>
 
-<div>
+<div class="container">
   <div>
     <h2>
       Add a new business
@@ -20,15 +20,12 @@
           Business name
         </label>
 
-        <input type="text" id="business_name_box" name="query_business_name">
+        <input class="form-control" type="text" id="business_name_box" name="query_business_name">
       </div>
 
-      <div>
-        <label for="business_description_box">
-          Business description
-        </label>
-
-        <input type="text" id="business_description_box" name="query_business_description">
+      <div class="form-group">
+          <label for="business_description_box">Business description</label>
+          <textarea class="form-control" id="business_description_box" rows="3" name="query_business_description"></textarea>
       </div>
 
       <div>
@@ -36,10 +33,10 @@
           Address
         </label>
 
-        <input type="text" id="address_box" name="query_address">
+        <input class="form-control" type="text" id="address_box" name="query_address">
       </div>
 
-      <button>
+      <button class="btn btn-primary" type="submit">
         Create business
       </button>
     </form>
@@ -47,7 +44,12 @@
 </div>
 
 <hr>
-<div>
+
+<div class="container">
+  <h2>
+      List of businesses
+  </h2>
+  
   <div class="table-responsive">
     <table class="table table-striped align-middle">
       <thead>
