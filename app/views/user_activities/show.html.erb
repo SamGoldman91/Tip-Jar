@@ -28,9 +28,11 @@
                   Tip
                 </th>
 
+                <%# REMOVING PICTURE FIELD
                 <th scope="col">
                   Picture
                 </th>
+                %>
 
                 <th scope="col">
                   Posted by
@@ -75,9 +77,11 @@
                   <%= a_tip.tip_text %>
                 </td>
 
+                <%# REMOVING PICTURE FIELD
                 <td>
-                  <img src="<%= a_tip.tip_pic %>">
+                  <img src="<%= a_tip.tip_pic %><%#">
                 </td>
+                %>
 
                 <td>
                   <%= a_tip.user.name %>

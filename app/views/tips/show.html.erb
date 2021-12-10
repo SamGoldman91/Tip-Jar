@@ -41,12 +41,14 @@
         <%= @the_tip.tip_text %>
       </dd>
 
+      <%# REMOVING PICTURE FIELD
       <dt>
         Tip pic
       </dt>
       <dd>
-        <img src="<%= @the_tip.tip_pic %>">
+        <img src="<%= @the_tip.tip_pic %><%#">
       </dd>
+      %>
 
       <dt>
         User
@@ -142,13 +144,15 @@
               <input class="form-control" id="tip_text_box" name="query_tip_text" value="<%= @the_tip.tip_text %>">
             </div>
 
+            <%# REMOVING PICTURE FIELD
             <div>
               <label for="tip_pic_box">
                 Tip pic
               </label>
 
-              <input class="form-control" type="text" id="tip_pic_box" name="query_tip_pic" value="<%= @the_tip.tip_pic %>">
+              <input class="form-control" type="text" id="tip_pic_box" name="query_tip_pic" value="<%= @the_tip.tip_pic %><%#">
             </div>
+            %>
 
             <button class="btn btn-primary" type="submit">
               Update tip

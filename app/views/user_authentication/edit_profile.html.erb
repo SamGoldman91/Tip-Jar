@@ -13,10 +13,13 @@
         <label for="name_box">Name</label>
         <input id="name_box" name="query_name" value="<%= @current_user.name %>">
       </div>
+
+      <%# REMOVING PICTURE FIELD
       <div>
         <label for="photo_box">Photo</label>
-        <input id="photo_box" name="query_photo" value="<%= @current_user.photo %>">
+        <input id="photo_box" name="query_photo" value="<%= @current_user.photo %><%#">
       </div>
+      %>
 
       <div>
         <label for="password_box">Password</label>

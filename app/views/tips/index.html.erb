@@ -52,6 +52,7 @@
             <textarea class="form-control" id="tip_text_box" rows="3" name="query_tip_text"></textarea>
           </div>
 
+          <%# REMOVING PICTURE FIELD
           <div>
             <label for="tip_pic_box">
               Tip pic
@@ -59,6 +60,7 @@
 
             <input class="form-control" type="text" id="tip_pic_box" name="query_tip_pic">
           </div>
+          %>
 
           <button class="btn btn-primary" type="submit">
             Create tip
@@ -103,9 +105,11 @@
             Tip
           </th>
 
+          <%# REMOVING PICTURE FIELD
           <th scope="col">
             Picture
           </th>
+          %>
 
           <th scope="col">
             Posted by
@@ -142,7 +146,9 @@
         <% @list_of_tips.each do |a_tip| %>
         <tr>
           <td>
-            <%= a_tip.business.business_name %>
+            <a href="/businesses/<%= a_tip.business.id %>">
+              <%= a_tip.business.business_name %>
+            </a>
           </td>
 
           <td>
@@ -157,9 +163,11 @@
             <%= a_tip.tip_text %>
           </td>
 
+          <%# REMOVING PICTURE FIELD
           <td>
-            <img src="<%= a_tip.tip_pic %>">
+            <img src="<%= a_tip.tip_pic %><%#">
           </td>
+          %>
 
           <td>
             <%= a_tip.user.name %>

@@ -42,7 +42,7 @@ class UserAuthenticationController < ApplicationController
     @user.password = params.fetch("query_password")
     @user.password_confirmation = params.fetch("query_password_confirmation")
     @user.name = params.fetch("query_name")
-    @user.photo = params.fetch("query_photo")
+    #@user.photo = params.fetch("query_photo")
 
     save_status = @user.save
 
@@ -65,7 +65,7 @@ class UserAuthenticationController < ApplicationController
     @user.password = params.fetch("query_password")
     @user.password_confirmation = params.fetch("query_password_confirmation")
     @user.name = params.fetch("query_name")
-    @user.photo = params.fetch("query_photo")
+    #@user.photo = params.fetch("query_photo")
     
     if @user.valid?
       @user.save
