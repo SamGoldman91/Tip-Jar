@@ -21,6 +21,14 @@ class TipsController < ApplicationController
 
     @the_tip = matching_tips.at(0)
 
+    # List of unique categories that have been created
+    @list_of_categories = Tip.select(:tip_type).map(&:tip_type).uniq
+
+    #List of all businesses to select from when editing a tip
+    matching_businesses = Business.all
+
+    @list_of_businesses = matching_businesses.order({ :created_at => :desc })
+
     render({ :template => "tips/show.html.erb" })
   end
 

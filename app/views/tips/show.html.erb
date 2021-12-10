@@ -1,19 +1,13 @@
 <div>
   <div>
     <h1>
-      Tip #<%= @the_tip.id %> details
+      Tip details
     </h1>
 
     <div>
       <div>
         <a href="/tips">
-          Go back
-        </a>
-      </div>
-
-      <div>
-        <a href="/delete_tip/<%= @the_tip.id %>">
-          Delete tip
+          Go back to Tip Jar
         </a>
       </div>
     </div>
@@ -94,83 +88,80 @@
 
 <hr>
 
-
-<div>
+<% if @current_user.id == @the_tip.user_id %>
   <div>
-    <h2>
-      Edit tip
-    </h2>
+    <div>
+      <h2>
+        Edit tip
+      </h2>
 
-    <form action="/modify_tip/<%= @the_tip.id %>"  method="post" >
+      <form action="/modify_tip/<%= @the_tip.id %>"  method="post" >
+        <div>
+          <label for="title_box">
+            Tip title
+          </label>
+
+          <input type="text" id="title_box" name="query_title" value="<%= @the_tip.title %>">
+        </div>
+        
+        <div>
+          <label for="tip_text_box">
+            Tip text
+          </label>
+
+          <input type="text" id="tip_text_box" name="query_tip_text" value="<%= @the_tip.tip_text %>">
+        </div>
+
+        <div>
+          <label for="tip_pic_box">
+            Tip pic
+          </label>
+
+          <input type="text" id="tip_pic_box" name="query_tip_pic" value="<%= @the_tip.tip_pic %>">
+        </div>
+
+        <div>
+          <label for="business_id_box">
+            Business
+          </label>
+
+          <select id="business_id_box" name="query_business_id">
+            <% @list_of_businesses.each do |a_business| %>
+              <option value="<%= a_business.id %>">
+                <%= a_business.business_name %>
+              </option>
+            <% end %>
+          </select>
+        </div>
+
+        <div>
+          <label for="tip_type_box">
+            Category
+          </label>
+
+          <select id="tip_type_box" name="query_tip_type">
+            <% @list_of_categories.each do |category| %>
+              <option>
+                <%= category %>
+              </option>
+            <% end %>
+          </select>
+        </div>
+
+        <button class="btn btn-primary" type="submit">
+          Update tip
+        </button>
+      </form>
+
       <div>
-        <label for="title_box">
-          Tip title
-        </label>
-
-        <input type="text" id="title_box" name="query_title" value="<%= @the_tip.title %>">
-      </div>
-      
-      <div>
-        <label for="tip_text_box">
-          Tip text
-        </label>
-
-        <input type="text" id="tip_text_box" name="query_tip_text" value="<%= @the_tip.tip_text %>">
+        <a class="btn btn-danger" role="button" href="/delete_tip/<%= @the_tip.id %>">
+          Delete tip
+        </a>
       </div>
 
-      <div>
-        <label for="tip_pic_box">
-          Tip pic
-        </label>
-
-        <input type="text" id="tip_pic_box" name="query_tip_pic" value="<%= @the_tip.tip_pic %>">
-      </div>
-
-      <div>
-        <label for="user_id_box">
-          User
-        </label>
-
-        <input type="text" id="user_id_box" name="query_user_id" value="<%= @the_tip.user_id %>">
-      </div>
-
-      <div>
-        <label for="business_id_box">
-          Business
-        </label>
-
-        <input type="text" id="business_id_box" name="query_business_id" value="<%= @the_tip.business_id %>">
-      </div>
-
-      <div>
-        <label for="tip_type_box">
-          Tip type
-        </label>
-
-        <input type="text" id="tip_type_box" name="query_tip_type" value="<%= @the_tip.tip_type %>">
-      </div>
-
-      <div>
-        <label for="upvote_count_box">
-          Upvote count
-        </label>
-
-        <input type="text" id="upvote_count_box" name="query_upvote_count" value="<%= @the_tip.upvote_count %>">
-      </div>
-
-      <div>
-        <label for="downvote_count_box">
-          Downvote count
-        </label>
-
-        <input type="text" id="downvote_count_box" name="query_downvote_count" value="<%= @the_tip.downvote_count %>">
-      </div>
-
-      <button>
-        Update tip
-      </button>
-    </form>
+    </div>
   </div>
-</div>
+
+<% end %>
 
 <hr>

@@ -30,7 +30,6 @@
           <input type="text" id="tip_title_box" name="query_title">
         </div>
 
-        <%# BOOTSTRAP %>
         <div class="form-group">
           <label for="tip_text_box">Tip text</label>
           <textarea class="form-control" id="tip_text_box" rows="3" name="query_tip_text"></textarea>
@@ -45,19 +44,19 @@
         </div>
 
         <div class="container">
-              <label for="business_id_box">
-                Business
-              </label>
+          <label for="business_id_box">
+            Business
+          </label>
 
-              <select id="business_id_box" name="query_business_id">
-                <% @list_of_businesses.each do |a_business| %>
-                  <option value="<%= a_business.id %>">
-                    <%= a_business.business_name %>
-                  </option>
-                <% end %>
-              </select>
-            
-              <a href="/businesses">Add a new business</a>
+          <select id="business_id_box" name="query_business_id">
+            <% @list_of_businesses.each do |a_business| %>
+              <option value="<%= a_business.id %>">
+                <%= a_business.business_name %>
+              </option>
+            <% end %>
+          </select>
+        
+          <a href="/businesses">Add a new business</a>
         </div>
 
         
@@ -186,7 +185,6 @@
               Show details
             </a>
           </td>
-          
           
           <td>
             <form action="/insert_upvote" method="post">
