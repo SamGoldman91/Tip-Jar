@@ -55,6 +55,9 @@
       <thead>
         <tr>
           <th scope="col">
+          </th>
+
+          <th scope="col">
             Business name
           </th>
 
@@ -82,6 +85,12 @@
       <tbody>
         <% @list_of_businesses.each do |a_business| %>
         <tr>
+          <td>
+            <a class="btn btn-secondary" role="button" href="/tips">
+              Add a tip
+            </a>
+          </td>
+
           <td>
             <%= a_business.business_name %>
           </td>
