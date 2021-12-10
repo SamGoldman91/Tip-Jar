@@ -1,89 +1,89 @@
 <div class="container">
-  <div class="row">
-    <div class="col-sm">
-    </div>
-    <div class="col-sm">
+  <div>
+    <div>
       <h2>
         Create a new tip
       </h2>
 
       <form action="/insert_tip" method="post">
-        <div>
-          <label for="tip_type_box">
-            Category
-          </label>
+        <div class="form-group">
+          <div>
+            <label for="business_id_box">
+              Business
+            </label>
 
-          <select id="tip_type_box" name="query_tip_type">
-            <% @list_of_categories.each do |category| %>
-              <option>
-                <%= category %>
-              </option>
-            <% end %>
-          </select>
+            <select class="form-control" id="business_id_box" name="query_business_id">
+              <% @list_of_businesses.each do |a_business| %>
+                <option value="<%= a_business.id %>">
+                  <%= a_business.business_name %>
+                </option>
+              <% end %>
+            </select>
+          
+            <a class="btn btn-secondary" role="button" href="/businesses">
+              Add a new business
+            </a>
+          </div>
+
+          <div>
+            <label for="tip_type_box">
+              Category
+            </label>
+
+            <select class="form-control" id="tip_type_box" name="query_tip_type">
+              <% @list_of_categories.each do |category| %>
+                <option>
+                  <%= category %>
+                </option>
+              <% end %>
+            </select>
+          </div>
+
+          <div>
+            <label for="tip_title_box">
+              Tip title
+            </label>
+
+            <input class="form-control" type="text" id="tip_title_box" name="query_title">
+          </div>
+
+          <div class="form-group">
+            <label for="tip_text_box">Tip text</label>
+            <textarea class="form-control" id="tip_text_box" rows="3" name="query_tip_text"></textarea>
+          </div>
+
+          <%# REMOVING PICTURE FIELD
+          <div>
+            <label for="tip_pic_box">
+              Tip pic
+            </label>
+
+            <input class="form-control" type="text" id="tip_pic_box" name="query_tip_pic">
+          </div>
+          %>
+
+          <button class="btn btn-primary" type="submit">
+            Create tip
+          </button>
         </div>
-
-        <div>
-          <label for="tip_title_box">
-            Tip title
-          </label>
-
-          <input type="text" id="tip_title_box" name="query_title">
-        </div>
-
-        <div>
-          <label for="tip_text_box">
-            Tip text
-          </label>
-
-          <input type="text" id="tip_text_box" name="query_tip_text">
-        </div>
-
-        <div>
-          <label for="tip_pic_box">
-            Tip pic
-          </label>
-
-          <input type="text" id="tip_pic_box" name="query_tip_pic">
-        </div>
-
-        <div>
-          <label for="business_id_box">
-            Business
-          </label>
-
-          <select id="business_id_box" name="query_business_id">
-            <% @list_of_businesses.each do |a_business| %>
-              <option value="<%= a_business.id %>">
-                <%= a_business.business_name %>
-              </option>
-            <% end %>
-          </select>
-        </div>    
-
-        <button>
-          Create tip
-        </button>
-        
       </form>
     </div>
-    <div class="col-sm">
-    </div>
   </div>
 </div>
 
 <hr>
 
-<div>
+<div class="container">
   <div>
     <h1>
-      Tips
+      Tip Jar
     </h1>
   </div>
-</div>
+
 
 <hr>
 
-<div>
+
   <div class="table-responsive">
     <table class="table table-striped align-middle">
       <thead>
@@ -105,9 +105,11 @@
             Tip
           </th>
 
+          <%# REMOVING PICTURE FIELD
           <th scope="col">
             Picture
           </th>
+          %>
 
           <th scope="col">
             Posted by
@@ -144,7 +146,9 @@
         <% @list_of_tips.each do |a_tip| %>
         <tr>
           <td>
-            <%= a_tip.business.business_name %>
+            <a href="/businesses/<%= a_tip.business.id %>">
+              <%= a_tip.business.business_name %>
+            </a>
           </td>
 
           <td>
@@ -159,9 +163,11 @@
             <%= a_tip.tip_text %>
           </td>
 
+          <%# REMOVING PICTURE FIELD
           <td>
-            <img src="<%= a_tip.tip_pic %>">
+            <img src="<%= a_tip.tip_pic %><%#">
           </td>
+          %>
 
           <td>
             <%= a_tip.user.name %>
@@ -185,27 +191,30 @@
             </a>
           </td>
           
-          
           <td>
-            <form action="/insert_vote" method="post">
+            <form action="/insert_upvote" method="post">
                 
               <input type="hidden" id="vote_type" name="query_vote_type" value=<%= true %>>
               
               <input type="hidden" id="tip_id" name="query_tip_id" value="<%= a_tip.id %>">
               
-              <button>Upvote</button>
+              <button class="btn btn-primary" type="submit">
+                Upvote
+              </button>
               
             </form>
           </td>
 
           <td>
-            <form action="/insert_vote" method="post">
+            <form action="/insert_downvote" method="post">
 
               <input type="hidden" id="vote_type" name="query_vote_type" value=<%= false %>>
               
               <input type="hidden" id="tip_id" name="query_tip_id" value="<%= a_tip.id %>">
               
-              <button>Downvote</button>
+              <button class="btn btn-primary" type="submit">
+                Downvote
+              </button>
               
             </form>
           </td>
